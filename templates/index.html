@@ -1,51 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-    <title>Your Inventory Management App</title>
-    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
-    <link rel="stylesheet" href="../static/style.css">
-    <script src="../static/script.js" defer></script> <!-- Load the external JS -->
+    <meta charset="UTF-8">
+    <title>Galería Creativa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <h1>Your inventory management app</h1>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}"><b>Home</b></a></li>
-                <li><a href="{{ url_for('aboutus') }}">About</a></li>
-                <li><a href="{{ url_for('theProject') }}">The Project</a></li>
-                <li><a href="{{ url_for('finder') }}">Finder</a></li>
-            </ul>
-        </nav>
+        <h1>Bienvenido a la Galería Creativa</h1>
     </header>
 
-    <section class="homeSection">
-        <section class="inputHeaders">
-            <h2>Manage all your items with one app!</h2>
-            <p><b>Take your GitHub token and start managing.</b></p>
-            <p><b>You can copy whichever part of this project and implement it on your own room.</b></p>
-            <p><b>However, you ought not to sell any of these files </b></p>
-            <a href="{{ url_for('explain') }}" class="button">More info.</a>
+    <main>
+        <section class="upload-section">
+            <h2>Sube tu imagen</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*">
+                <button type="submit">Subir Imagen</button>
+            </form>
         </section>
 
-        <section class="inputLabels">
-            <!-- Add Item Form -->
-            <div class="form" id="formAdd">
-                <h3>Add a new element to the database:</h3>
-                <form>
-                    <label for="addtoken">GitHub token:</label>
-                    <input type="text" id="addtoken"><br>
-                    
-                    <button class="button" type="button" id="executeButton">Upload element to database</button>
-                </form>
-                <div id="resultDivAdd"></div>
-            </div>
+        <section class="edit-section">
+            <h2>Editar Texto</h2>
+            <textarea id="editable-text" contenteditable="true" placeholder="Escribe tu historia aquí..."></textarea>
+            <button onclick="guardarTexto()">Guardar Texto</button>
         </section>
-    </section>
+    </main>
 
     <footer>
-        <p>&copy; 2024 Your Inventory Management App, all rights reserved.</p>
+        <p>© 2025 Galería Creativa</p>
     </footer>
+
+    <script>
+        function guardarTexto() {
+            const texto = document.getElementById('editable-text').value;
+            alert("Texto guardado: " + texto);
+            // Aquí puedes enviar el texto a tu backend si quieres
+        }
+    </script>
 </body>
 </html>
